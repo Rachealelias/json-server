@@ -13,12 +13,12 @@
         <th>End date</th>
         <th>Actions</th>
       </tr>
-      <tr>
-        <td>
-          <input disabled value="TEST-3" />
+      <tr >
+        <td class='list' id='list' >
+          <input class='event-name' id='event-name' value="" />
         </td>
         <td>
-          <input type="date" value="2020-01-08" />
+          <input class='start-date' id='start-date' type="date" value="2020-01-08" />
         </td>
         <td>
           <input disabled />
@@ -30,11 +30,46 @@
       </tr>
     </table>
 
-    <script>
+    <script type='text/javascript'>
       // Get all Events
+
+
       fetch("http://localhost:3000/events")
         .then((response) => response.json())
-        .then((json) => console.log(json));
+        .then((datas) => showDatas(datas))
+          console.log(datas)
+
+          showDatas = (datas) => {
+            datas.array.forEach(data => {
+              document.getElementById('event-name').innerText = data.eventName
+             document.getElementById('event-date').innerText = data.startDate
+            });
+          }
+        
+   // showDatas = datas => {
+//let table = document.getElementById
+   //}    
+      
+      
+// function displayEvents(events){
+//    events.array.forEach(event => {
+//     console.log(event)
+//     const input = document.querySelector('.event-name')
+//    input.innerHTML= event.eventName
+// })
+    // function displayResults(events) {
+    //   events.forEach(event => {
+    //    document.getElementById('event-name').innerHTML = events.eventName
+    //   })
+    //   // events.forEach(event => {
+    //   // document.getElementById('event-name').innerText = events.eventName
+    //   // document.getElementById('start-date').innerText = events.startDate
+    //   // })
+    // }
+    // document.addEventListener('DOMContentLoaded', function(){
+    //   fetchEvents()
+    // })
+
 
       // Create a new Event
       fetch("http://localhost:3000/events", {
